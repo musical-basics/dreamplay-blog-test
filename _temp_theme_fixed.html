@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Template — Theme Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─── DESIGN TOKENS ─── */
+        :root {
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+            --bg-dark: #0a0a0a;
+            --bg-light: #fafafa;
+            --text-light: #ffffff;
+            --text-dark: #0a0a0a;
+            --text-muted-light: rgba(255, 255, 255, 0.60);
+            --text-muted-dark: rgba(10, 10, 10, 0.50);
+            --border-light: rgba(255, 255, 255, 0.10);
+            --border-dark: rgba(10, 10, 10, 0.15);
+            --label-tracking: 0.3em;
+        }
+
+        /* ─── RESET & BASE ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.7;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: var(--text-dark);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        a:hover {
+            color: #000;
+        }
+
+        /* ─── UTILITY ─── */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .container-narrow {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* ─── BLOG POST HEADER ─── */
+        .post-header {
+            position: relative;
+            aspect-ratio: 2.2 / 1;
+            max-height: 480px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--bg-dark);
+            padding: 48px 24px;
+        }
+
+        .post-header-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.30;
+        }
+
+        .post-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
+        }
+
+        .post-header-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .post-category {
+            font-family: var(--font-sans);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: var(--label-tracking);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .post-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--text-light);
+            margin-top: 16px;
+        }
+
+        .post-meta {
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 24px;
+        }
+
+        .post-meta a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .post-meta a:hover {
+            border-bottom-color: #fff;
+        }
+
+        /* ─── ARTICLE CONTENT ─── */
+        .article-content {
+            padding: 80px 0;
+            font-size: 1.125rem;
+            color: #333;
+        }
+
+        .article-content>*+* {
+            margin-top: 1.5em;
+        }
+
+        .article-content h2,
+        .article-content h3 {
+            font-family: var(--font-serif);
+            color: var(--text-dark);
+            line-height: 1.2;
+            text-wrap: balance;
+        }
+
+        .article-content h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            margin-top: 2.5em;
+        }
+
+        .article-content h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            margin-top: 2em;
+        }
+
+        .article-content p {
+            line-height: 1.8;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            padding-left: 24px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5em;
+        }
+
+        .article-content blockquote {
+            margin: 48px 0;
+            border-left: 2px solid var(--border-dark);
+            padding-left: 24px;
+            font-family: var(--font-serif);
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            line-height: 1.6;
+            color: var(--text-muted-dark);
+            font-style: italic;
+        }
+
+        .article-content .full-bleed-image {
+            width: 100%;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 48px;
+            margin-bottom: 48px;
+        }
+
+        .article-content figcaption {
+            font-size: 0.875rem;
+            text-align: center;
+            color: var(--text-muted-dark);
+            margin-top: 12px;
+        }
+
+        /* ─── AUTHOR BIO SECTION ─── */
+        .author-section {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+
+        .author-layout {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .author-image-wrap {
+            flex: 0 0 120px;
+        }
+
+        .author-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .author-content {
+            flex: 1;
+        }
+
+        .author-label {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: var(--label-tracking);
+            color: var(--text-muted-light);
+        }
+
+        .author-name {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--text-light);
+            margin-top: 8px;
+            line-height: 1.15;
+        }
+
+        .author-bio {
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 16px;
+        }
+
+        /* ─── CTA SECTION ─── */
+        .cta-section {
+            background: var(--bg-light);
+            padding: 80px 0 96px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.75rem, 3.5vw, 3rem);
+            line-height: 1.15;
+            color: var(--text-dark);
+        }
+
+        .cta-body {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-muted-dark);
+            margin-top: 24px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 32px;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-solid-dark {
+            background: var(--bg-dark);
+            color: #fff;
+            border: 1px solid var(--bg-dark);
+        }
+
+        .btn-solid-dark:hover {
+            background: rgba(10, 10, 10, 0.9);
+            color: #fff;
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--bg-dark);
+            border: 1px solid var(--bg-dark);
+        }
+
+        .btn-outline-dark:hover {
+            background: var(--bg-dark);
+            color: #fff;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .post-header {
+                aspect-ratio: 1.6 / 1;
+                max-height: 360px;
+            }
+
+            .article-content {
+                padding: 48px 0;
+                font-size: 1rem;
+            }
+
+            .author-layout {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════ POST HEADER ═══════ -->
+    <header class="post-header">
+        <img src="https://image.pollinations.ai/prompt/Abstract%20moody%20dark%20background?width=1600&height=900&nologo=true"
+            class="post-header-bg" alt="Header background">
+        <div class="post-header-overlay"></div>
+        <div class="post-header-content">
+            <p class="post-category">Category Name</p>
+            <h1 class="post-title text-balance">
+                Blog Post Title Goes Here on One or More Lines
+            </h1>
+            <p class="post-meta">
+                By <a href="#">Author Name</a> &middot; October 26, 2023
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <!-- ═══════ ARTICLE CONTENT ═══════ -->
+        <article class="article-content">
+            <div class="container-narrow">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                    tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero
+                    vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+                    tristique posuere.</p>
+
+                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi
+                    porta gravida at eget metus. Curabitur blandit tempus porttitor. Cras justo odio, dapibus ac
+                    facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                    auctor.</p>
+
+                <blockquote>
+                    &ldquo;This is a pull quote. It's a great way to highlight a key point from the article and break up
+                    the text, making it more scannable and engaging for the reader.&rdquo;
+                </blockquote>
+
+                <h2>A Subheading for a New Section</h2>
+                <p>Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque
+                    nisl consectetur et. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis
+                    dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+                <ul>
+                    <li>This is the first item in an unordered list.</li>
+                    <li>Here is the second item, demonstrating list styling.</li>
+                    <li>And a third, for good measure.</li>
+                </ul>
+
+                <figure class="full-bleed-image">
+                    <img src="https://image.pollinations.ai/prompt/Serene%20landscape%20with%20soft%20light?width=1200&height=600&nologo=true"
+                        alt="Placeholder image for article content">
+                    <figcaption>This is an optional caption for a full-bleed image.</figcaption>
+                </figure>
+
+                <h3>A Deeper Dive with an H3</h3>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur
+                    ac, vestibulum at eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                    ridiculus mus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio
+                    sem nec elit.</p>
+
+                <ol>
+                    <li>This is the first item in an ordered list.</li>
+                    <li>It provides a clear, step-by-step structure.</li>
+                    <li>Perfect for instructions or ranked items.</li>
+                </ol>
+
+                <p>Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis
+                    parturient montes, nascetur ridiculus mus. Maecenas faucibus mollis interdum. Cras mattis
+                    consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue.</p>
+            </div>
+        </article>
+
+        <!-- ═══════ AUTHOR BIO ═══════ -->
+        <section class="author-section">
+            <div class="container-narrow">
+                <div class="author-layout">
+                    <div class="author-image-wrap">
+                        <img src="https://image.pollinations.ai/prompt/Professional%20headshot%20of%20a%20writer?width=200&height=200&nologo=true"
+                            class="author-image" alt="Author portrait">
+                    </div>
+                    <div class="author-content">
+                        <p class="author-label">Written By</p>
+                        <h2 class="author-name">Author Name</h2>
+                        <p class="author-bio">
+                            A short bio about the author goes here. This can include their role, expertise, and a brief
+                            personal touch to connect with the reader. Keep it to two or three sentences for impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ CALL TO ACTION ═══════ -->
+        <section class="cta-section">
+            <div class="container-narrow">
+                <h2 class="cta-title text-balance">A Compelling Call to Action</h2>
+                <p class="cta-body">
+                    Encourage the reader to take the next step. This could be signing up for a newsletter, checking out
+                    a product, or reading another related article.
+                </p>
+                <div class="cta-actions">
+                    <a href="#" class="btn btn-solid-dark">Primary Action</a>
+                    <a href="#" class="btn btn-outline-dark">Secondary Action</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

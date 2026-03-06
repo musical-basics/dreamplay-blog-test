@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamPlay Premium Offer — Theme Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─── DESIGN TOKENS ─── */
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --bg-dark: #0a0a0a;
+    --bg-light: #fafafa;
+    --text-light: #ffffff;
+    --text-dark: #0a0a0a;
+    --text-muted-light: rgba(255,255,255,0.60);
+    --text-muted-dark: rgba(10,10,10,0.50);
+    --border-light: rgba(255,255,255,0.10);
+    --border-dark: rgba(10,10,10,0.15);
+    --label-tracking: 0.3em;
+  }
+
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--font-sans); color: var(--text-dark); background: var(--bg-light); line-height: 1.7; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { text-decoration: none; }
+
+  /* ─── UTILITY ─── */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .text-balance { text-wrap: balance; }
+
+  /* ─── SECTION — HERO (Full-Bleed Dark + Image BG) ─── */
+  .hero {
+    position: relative; min-height: 100vh; overflow: hidden;
+    display: flex; align-items: center;
+    background: var(--bg-dark);
+  }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(15,23,42,0.3), rgba(0,0,0,0.4)); }
+  .hero-content { position: relative; z-index: 10; padding: 0 48px; max-width: 720px; }
+  .hero-label {
+    font-family: var(--font-sans); font-size: 10px; text-transform: uppercase;
+    letter-spacing: var(--label-tracking); color: rgba(255,255,255,0.7);
+  }
+  .hero-title {
+    font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1.1; color: var(--text-light); margin-top: 16px;
+  }
+  .hero-subtitle {
+    font-family: var(--font-sans); font-size: clamp(0.875rem, 1.5vw, 1rem);
+    line-height: 1.7; color: rgba(255,255,255,0.9); margin-top: 24px; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 32px; font-family: var(--font-sans); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary { background: #fff; color: #000; border: none; }
+  .btn-primary:hover { background: rgba(255,255,255,0.9); }
+  .btn-outline-light { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .btn-outline-light:hover { background: rgba(255,255,255,0.1); }
+  .btn-solid-dark { background: var(--bg-dark); color: #fff; border: 1px solid var(--bg-dark); }
+  .btn-solid-dark:hover { background: rgba(10,10,10,0.9); }
+  .btn-outline-dark { background: transparent; color: var(--bg-dark); border: 1px solid var(--bg-dark); }
+  .btn-outline-dark:hover { background: var(--bg-dark); color: #fff; }
+
+  /* ─── SECTION — SOCIAL PROOF BAR (Dark strip) ─── */
+  .proof-bar {
+    background: var(--bg-dark); padding: 20px 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 32px;
+  }
+  .proof-stat { text-align: center; }
+  .proof-stat-value { font-family: var(--font-serif); font-size: 1.25rem; color: var(--text-light); }
+  .proof-stat-label {
+    font-family: var(--font-sans); font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.25em; color: rgba(255,255,255,0.4); margin-top: 2px;
+  }
+  .proof-divider { width: 1px; height: 32px; background: var(--border-light); }
+
+  /* ─── SECTION — STATS (Full-Bleed Image + Overlay) ─── */
+  .stats-hero {
+    position: relative; min-height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-dark); text-align: center;
+  }
+  .stats-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .stats-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+  .stats-hero-content { position: relative; z-index: 10; padding: 48px 24px; }
+  .stat-big { font-family: var(--font-serif); font-size: clamp(4rem, 10vw, 8rem); color: var(--text-light); line-height: 1; }
+  .stat-big sup { font-size: 0.6em; }
+  .stat-label {
+    font-family: var(--font-sans); font-size: clamp(0.7rem, 1.2vw, 0.875rem);
+    text-transform: uppercase; letter-spacing: var(--label-tracking); color: var(--text-light); margin-top: 8px;
+  }
+  .stat-sublabel { color: rgba(255,255,255,0.8); }
+  .stats-pair { display: flex; align-items: center; gap: 48px; }
+  .stats-divider { width: 1px; height: 160px; background: rgba(255,255,255,0.6); }
+
+  /* ─── SECTION — BLOCKQUOTE (Dark bg) ─── */
+  .quote-section { background: var(--bg-dark); padding: 16px 0 64px; }
+  .quote-block {
+    border-left: 2px solid rgba(255,255,255,0.2); padding-left: 48px;
+  }
+  .quote-text {
+    font-family: var(--font-serif); font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.6; color: rgba(255,255,255,0.8); font-style: italic;
+  }
+  .quote-cite { margin-top: 24px; }
+  .quote-author {
+    font-family: var(--font-serif); font-size: 1rem; color: rgba(255,255,255,0.9);
+    font-style: normal; font-weight: 500;
+  }
+  .quote-role {
+    font-family: var(--font-sans); font-size: 0.875rem; color: rgba(255,255,255,0.5);
+    display: block; margin-top: 4px;
+  }
+
+  /* ─── SECTION — FEATURES GRID (Dark bg, 2x2) ─── */
+  .features-section { background: var(--bg-dark); padding: 80px 0 96px; }
+  .section-label {
+    font-family: var(--font-sans); font-size: 11px; text-transform: uppercase;
+    letter-spacing: var(--label-tracking); color: var(--text-muted-light);
+  }
+  .section-label-dark { color: var(--text-muted-dark); }
+  .section-title {
+    font-family: var(--font-serif); font-size: clamp(1.75rem, 3.5vw, 3rem);
+    line-height: 1.15; color: var(--text-light); margin-top: 16px;
+  }
+  .section-title-dark { color: var(--text-dark); }
+  .features-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border-light); margin-top: 64px;
+  }
+  .feature-card { background: var(--bg-dark); padding: 40px 48px; }
+  .feature-icon { width: 24px; height: 24px; color: rgba(255,255,255,0.7); }
+  .feature-name {
+    font-family: var(--font-serif); font-size: 1.25rem; color: var(--text-light); margin-top: 16px;
+  }
+  .feature-desc {
+    font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.7;
+    color: var(--text-muted-light); margin-top: 12px;
+  }
+
+  /* ─── SECTION — CREATOR BIO (Dark bg, 2-column) ─── */
+  .creator-section { background: var(--bg-dark); padding: 80px 0 96px; }
+  .creator-layout { display: flex; gap: 64px; align-items: stretch; }
+  .creator-image-wrap { flex: 0 0 40%; position: relative; }
+  .creator-image { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; aspect-ratio: 3/4; }
+  .creator-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .creator-name { font-family: var(--font-serif); font-size: clamp(1.75rem, 3.5vw, 3rem); color: var(--text-light); margin-top: 16px; line-height: 1.15; }
+  .creator-role { font-family: var(--font-sans); font-size: 0.875rem; color: var(--text-muted-light); margin-top: 8px; }
+  .creator-quote {
+    font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.7;
+    color: rgba(255,255,255,0.7); margin-top: 32px;
+  }
+  .numbered-list { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .numbered-item { display: flex; align-items: flex-start; gap: 16px; }
+  .numbered-badge {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center;
+    justify-content: center; font-family: var(--font-sans); font-size: 11px;
+    color: rgba(255,255,255,0.6);
+  }
+  .numbered-text { font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.7; color: rgba(255,255,255,0.7); }
+
+  /* ─── SECTION — GUARANTEE (Light bg, centered) ─── */
+  .guarantee-section { background: var(--bg-light); padding: 80px 0 96px; text-align: center; }
+  .guarantee-icon { width: 48px; height: 48px; color: rgba(10,10,10,0.8); margin: 0 auto; }
+  .guarantee-title {
+    font-family: var(--font-serif); font-size: clamp(1.75rem, 3.5vw, 3rem);
+    line-height: 1.15; color: var(--text-dark); margin-top: 24px;
+  }
+  .guarantee-body {
+    font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.7;
+    color: var(--text-muted-dark); margin-top: 32px; max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .guarantee-highlight {
+    font-family: var(--font-serif); font-size: 1.125rem; font-style: italic;
+    color: var(--text-dark); margin-top: 24px;
+  }
+  .guarantee-actions { display: flex; gap: 16px; justify-content: center; margin-top: 48px; flex-wrap: wrap; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero-content { padding: 0 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .creator-layout { flex-direction: column; gap: 32px; }
+    .creator-image-wrap { flex: none; }
+    .stats-pair { flex-direction: column; gap: 24px; }
+    .stats-divider { width: 60px; height: 1px; }
+    .proof-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO (Full-Bleed + Gradient Overlay) ═══════ -->
+<section class="hero">
+  <img src="https://image.pollinations.ai/prompt/Sleek%20black%20piano%20keyboard%20in%20dark%20studio?width=1600&height=900&nologo=true" class="hero-bg" alt="Hero background">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">Heading label goes here</p>
+    <h1 class="hero-title text-balance">
+      Main Headline<br>
+      Goes Right Here<br>
+      On Multiple Lines.
+    </h1>
+    <p class="hero-subtitle">
+      Supporting paragraph text goes here. Keep it concise, one or two sentences that summarize the key value proposition.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary">Primary Action</a>
+      <a href="#" class="btn btn-outline-light">Secondary Action</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SOCIAL PROOF BAR ═══════ -->
+<div class="proof-bar">
+  <div class="proof-stat">
+    <div class="proof-stat-value">$124,000+</div>
+    <div class="proof-stat-label">Metric One</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-stat-value">208</div>
+    <div class="proof-stat-label">Metric Two</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-stat-value">Batch 1</div>
+    <div class="proof-stat-label">Metric Three</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-stat">
+    <div class="proof-stat-value">100%</div>
+    <div class="proof-stat-label">Metric Four</div>
+  </div>
+</div>
+
+<!-- ═══════ STATS HERO (Full-Bleed Image + Big Numbers) ═══════ -->
+<section class="stats-hero">
+  <img src="https://image.pollinations.ai/prompt/Close%20up%20of%20hands%20playing%20piano%20keys?width=1600&height=900&nologo=true" class="stats-hero-bg" alt="Stats background">
+  <div class="stats-hero-overlay"></div>
+  <div class="stats-hero-content">
+    <div class="stats-pair">
+      <div style="text-align: right;">
+        <p class="stat-big">55<sup>%</sup></p>
+        <p class="stat-label">Of Pianists</p>
+        <p class="stat-label">Have Hands</p>
+      </div>
+      <div class="stats-divider"></div>
+      <div style="text-align: left;">
+        <p class="stat-label stat-sublabel">Under</p>
+        <p class="stat-big">8.5</p>
+        <p class="stat-label">Inches</p>
+      </div>
+    </div>
+    <div style="margin-top: 40px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+      <a href="#" class="btn btn-outline-light">Call to Action One</a>
+      <a href="#" class="btn btn-outline-light">Call to Action Two</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BLOCKQUOTE SECTION ═══════ -->
+<section class="quote-section">
+  <div class="container-narrow">
+    <div class="quote-block">
+      <blockquote class="quote-text">
+        &ldquo;Insert a powerful, relevant quote here. Something that resonates emotionally with your target audience and reinforces your core message.&rdquo;
+      </blockquote>
+      <div class="quote-cite">
+        <cite class="quote-author">Full Name</cite>
+        <span class="quote-role">Title, Organization</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FEATURES GRID (2×2) ═══════ -->
+<section class="features-section">
+  <div class="container">
+    <div style="max-width: 640px;">
+      <p class="section-label">Section Label</p>
+      <h2 class="section-title text-balance">Everything you need. Nothing you don't.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">♪</div>
+        <h3 class="feature-name">Feature One</h3>
+        <p class="feature-desc">Brief description of this feature. Keep it to one or two sentences. Focus on the benefit, not just the specification.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3 class="feature-name">Feature Two</h3>
+        <p class="feature-desc">Brief description of this feature. Keep it to one or two sentences. Focus on the benefit, not just the specification.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-name">Feature Three</h3>
+        <p class="feature-desc">Brief description of this feature. Keep it to one or two sentences. Focus on the benefit, not just the specification.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3 class="feature-name">Feature Four</h3>
+        <p class="feature-desc">Brief description of this feature. Keep it to one or two sentences. Focus on the benefit, not just the specification.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CREATOR / BIO SECTION ═══════ -->
+<section class="creator-section">
+  <div class="container">
+    <div class="creator-layout">
+      <div class="creator-image-wrap">
+        <img src="https://image.pollinations.ai/prompt/Professional%20portrait%20of%20a%20musician?width=600&height=800&nologo=true" class="creator-image" alt="Creator portrait">
+      </div>
+      <div class="creator-content">
+        <p class="section-label">About The Creator</p>
+        <h2 class="creator-name text-balance">Creator Name</h2>
+        <p class="creator-role">Title &middot; Location</p>
+        <p class="creator-quote">
+          "A personal story or testimonial from the creator. This should feel authentic and connect emotionally with the reader."
+        </p>
+        <div class="numbered-list">
+          <div class="numbered-item">
+            <span class="numbered-badge">1</span>
+            <p class="numbered-text">First audience segment or key benefit point.</p>
+          </div>
+          <div class="numbered-item">
+            <span class="numbered-badge">2</span>
+            <p class="numbered-text">Second audience segment or key benefit point.</p>
+          </div>
+          <div class="numbered-item">
+            <span class="numbered-badge">3</span>
+            <p class="numbered-text">Third audience segment or key benefit point.</p>
+          </div>
+          <div class="numbered-item">
+            <span class="numbered-badge">4</span>
+            <p class="numbered-text">Fourth audience segment or key benefit point.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GUARANTEE SECTION (Light bg, centered) ═══════ -->
+<section class="guarantee-section">
+  <div class="container-narrow">
+    <div style="font-size: 48px; color: rgba(10,10,10,0.8); text-align: center;">🛡</div>
+    <h2 class="guarantee-title text-balance">The "No-Risk" Guarantee</h2>
+    <p class="guarantee-body">
+      Supporting paragraph that reassures the reader. Explain your refund policy, production standards, or whatever eliminates the customer's risk. Keep it factual and confidence-building.
+    </p>
+    <p class="guarantee-highlight text-balance">
+      You either get what was promised, or you get your money back. You risk nothing.
+    </p>
+    <div class="guarantee-actions">
+      <a href="#" class="btn btn-solid-dark">Primary Action →</a>
+      <a href="#" class="btn btn-outline-dark">Secondary Action</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

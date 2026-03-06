@@ -1,0 +1,37 @@
+{
+    "output": {
+        "filePath": "../dreamplay-blog-repomix.xml"
+    },
+    "ignore": {
+        "useGitignore": true,
+        "useDefaultPatterns": true,
+        "customPatterns": [
+            "public/**",
+            "pnpm-lock.yaml",
+            "package-lock.json",
+            "yarn.lock",
+            "**/*.svg",
+            "**/*.png",
+            "**/*.jpg",
+            "**/*.jpeg",
+            "**/*.gif",
+            "**/*.ico",
+            "**/*.webp",
+            "**/*.avif",
+            "**/*.mp4",
+            "**/*.mov",
+            "**/*.pdf",
+            "dist/**",
+            ".next/**",
+            "node_modules/**",
+            "**/*.xml",
+            "**/*.backup.*",
+            "**/*backup*",
+            "_backup_files/**",
+            "components/ui/**",
+            "supabase/**",
+            "pnpm-workspace.yaml",
+            "tsconfig.tsbuildinfo"
+        ]
+    }
+}
